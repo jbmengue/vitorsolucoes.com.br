@@ -1,0 +1,43 @@
+@layer components {
+  .vrf-segments {
+    @apply my-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .vrf-segment {
+    @apply flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-4;
+  }
+
+  .vrf-segment__icon {
+    color: var(--service-content-accent);
+    @apply flex h-11 w-11 items-center justify-center rounded-full bg-orange-50;
+  }
+
+  .vrf-segment__icon svg {
+    @apply h-5 w-5;
+  }
+
+  .vrf-segment__label {
+    @apply text-base font-medium text-slate-800;
+  }
+
+  .vrf-steps {
+    @apply my-8 space-y-4;
+  }
+
+  .vrf-step {
+    @apply flex gap-4;
+  }
+
+  .vrf-step__number {
+    background-color: var(--service-content-accent);
+    @apply mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white;
+  }
+
+  .vrf-step__title {
+    @apply text-lg font-semibold text-slate-900;
+  }
+
+  .vrf-step__description {
+    @apply mt-1 text-base leading-7 text-slate-700;
+  }
+}

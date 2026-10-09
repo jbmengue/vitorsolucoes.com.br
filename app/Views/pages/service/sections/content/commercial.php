@@ -1,13 +1,13 @@
 <section class="layout-container mb-30">
-  <div class="commercial-content-clean">
-    <p class="commercial-content-clean__lead">Cada negócio possui necessidades específicas de <strong>refrigeração, climatização e exposição de produtos</strong>. Por isso, os projetos comerciais são desenvolvidos de forma <strong>personalizada</strong>, considerando o tipo de operação, fluxo de clientes, layout do ambiente e eficiência energética.</p>
+  <div class="service-content">
+    <p class="service-content__lead">Cada negócio possui necessidades específicas de <strong>refrigeração, climatização e exposição de produtos</strong>. Por isso, os projetos comerciais são desenvolvidos de forma <strong>personalizada</strong>, considerando o tipo de operação, fluxo de clientes, layout do ambiente e eficiência energética.</p>
     <h2>Projetos em <span>2D e 3D</span></h2>
     <p>Os projetos são elaborados em plataformas 2D e 3D, permitindo visualizar o ambiente antes mesmo da execução. Isso facilita o planejamento do espaço, a organização dos equipamentos e a definição de soluções mais funcionais e modernas para o estabelecimento.</p>
     <h2>Mais organização e melhor experiência para o cliente</h2>
     <p>Um projeto comercial bem planejado melhora a circulação no ambiente, valoriza os produtos expostos e proporciona mais conforto para clientes e colaboradores. Além da parte estética, o objetivo é tornar o espaço mais <strong>eficiente, funcional e atrativo</strong> para aumentar as vendas.</p>
     <h2>Soluções para diferentes segmentos</h2>
     <p>Os projetos são desenvolvidos para diversos tipos de estabelecimentos comerciais, sempre respeitando as necessidades específicas de cada operação:</p>
-    <ul>
+    <ul class="service-content__list">
       <li>Supermercados</li>
       <li>Açougues</li>
       <li>Cafeterias</li>

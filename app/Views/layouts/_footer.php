@@ -9,9 +9,9 @@
         <div>
           <div>
             <div class="flex flex-col lg:flex-row justify-start gap-x-10">
-              <a href="<?= $appConfig->openTicketLink ?>" class="btn-secondary btn-lg h-20 mb-5">
+              <button type="button" class="btn-secondary btn-lg h-20 mb-5" onclick="<?= esc(whatsapp_conversion_onclick(), 'attr') ?>">
                 Abra um chamado
-              </a>
+              </button>
               <button type="button" class="btn-secondary btn-lg h-20 mb-5" onclick="<?= esc(whatsapp_conversion_onclick(), 'attr') ?>">
                 Conversar agora
               </button>

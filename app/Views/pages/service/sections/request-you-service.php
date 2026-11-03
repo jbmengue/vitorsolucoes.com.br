@@ -16,7 +16,10 @@
       </div>
       <div class="flex flex-wrap justify-center xl:justify-start my-20 md:my-10 gap-x-10">
         <div>
-          <a href="<?= $appConfig->openTicketLink ?>" target="_blank" rel="noopener noreferrer" class="btn-secondary btn-lg inline-block text-white">Abrir um chamado</a>
+          <button class="btn-secondary btn-lg inline-block text-white" onclick="<?= esc(
+            whatsapp_conversion_onclick(),
+            'attr',
+            ) ?>">Abrir um chamado</button>
         </div>
         <div>
           <a href="tel:<?= $appConfig->phone ?>" class="btn-primary btn-lg py-3 lg:w-[350px] mx-auto text-white">

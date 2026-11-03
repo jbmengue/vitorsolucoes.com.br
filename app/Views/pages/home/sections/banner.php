@@ -18,7 +18,7 @@
       <div class="mt-15">
         <div class="flex flex-col md:flex-row justify-between gap-10">
           <div data-aos="zoom-in" data-aos-delay="300">
-            <a href="<?= $appConfig->openTicketLink ?>" target="_blank" rel="noopener noreferrer" class="btn-secondary btn-lg">Abrir um chamado</a>
+            <button class="btn-secondary btn-lg" onclick="<?= esc(whatsapp_conversion_onclick(), 'attr') ?>">Abrir um chamado</button>
           </div>
           <div data-aos="zoom-in" data-aos-delay="400">
             <button class="btn-secondary btn-lg w-full lg:w-auto" onclick="<?= esc(whatsapp_conversion_onclick(), 'attr') ?>">Conversar agora</button>

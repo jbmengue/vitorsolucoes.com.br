@@ -78,10 +78,10 @@
             </article>
           <?php endforeach; ?>
         </div>
-        <a href="<?= esc(
-          $appConfig->openTicketLink,
-          'attr',
-        ) ?>" target="_blank" rel="noopener noreferrer" class="btn-secondary btn-md mt-9 inline-flex">Abrir um chamado agora</a>
+        <button  class="btn-secondary btn-md mt-9 inline-flex" onclick="<?= esc(
+            whatsapp_conversion_onclick(),
+            'attr',
+            ) ?>">Abrir um chamado agora</button>
       </div>
     </section>
   <?php endforeach; ?>

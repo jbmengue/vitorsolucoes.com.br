@@ -11,7 +11,12 @@
       <h1 class="<?= $classPhrase ?>"><?= $post->phrase ?></h1>
       <div class="lg:mt-20">
         <div class="flex flex-wrap justify-center items-center gap-x-10  gap-y-5">
-          <a href="<?= $appConfig->openTicketLink ?>" target="_blank" rel="noopener noreferrer" class="btn-secondary btn-lg">Abrir um chamado</a>
+          <div data-aos="zoom-in" data-aos-delay="200">
+            <button class="btn-secondary btn-lg w-full lg:w-auto" onclick="<?= esc(
+              whatsapp_conversion_onclick(),
+              'attr',
+            ) ?>">Abrir um chamado</button>
+          </div>
           <a href="tel:<?= $appConfig->phone ?>" class="btn-primary btn-lg py-3 bg-white text-[var(--service-color)]">
               <i class="flaticon-telephone"></i>
               <?= $appConfig->phone ?>

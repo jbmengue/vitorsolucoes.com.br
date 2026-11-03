@@ -6,13 +6,13 @@
     </div>
     <div class="flex flex-wrap justify-around items-center gap-y-5">
       <div data-aos="zoom-in" class="w-full md:w-[350px]">
-        <a href="<?= $appConfig->openTicketLink ?>"  target="_blank" rel="noopener noreferrer" class="block btn-tertiary btn-lg ">Abrir um chamado</a>
+        <button type="button" class="block btn-tertiary btn-lg w-full" onclick="<?= esc(whatsapp_conversion_onclick(), 'attr') ?>">Abrir um chamado</button>
       </div>
-      <div data-aos="zoom-in" data-aos-delay="300" class="w-full md:w-[350px]">
-        <a href="<?= $appConfig->openSalesOrdersLink ?>" target="_blank" rel="noopener noreferrer" class="block btn-tertiary btn-lg w-full">Ordem de vendas</a>
+      <div data-aos="zoom-in" class="w-full md:w-[350px]">
+        <button type="button" class="block btn-tertiary btn-lg w-full" onclick="<?= esc(whatsapp_conversion_onclick(), 'attr') ?>">Ordem de vendas</button>
       </div>
-      <div data-aos="zoom-in"  data-aos-delay="600" class="w-full md:w-[350px]">
-        <a href="<?= $appConfig->openQuotesLink ?>" target="_blank" rel="noopener noreferrer" class="block btn-tertiary btn-lg w-full">Orçamentos</a>
+      <div data-aos="zoom-in" class="w-full md:w-[350px]">
+        <button type="button" class="block btn-tertiary btn-lg w-full" onclick="<?= esc(whatsapp_conversion_onclick(), 'attr') ?>">Orçamentos</button>
       </div>
     </div>
   </div>

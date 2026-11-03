@@ -5,6 +5,9 @@ if (!$openTicketLink->visible) {
 } ?>
 <div class="layout-container">
   <div class="flex justify-center my-20 md:my-35">
-    <a href="<?= $appConfig->openTicketLink ?>" target="_blank" rel="noopener noreferrer" class="btn-secondary btn-lg inline-block text-white text-sm md:text-xl">Abrir um chamado agora</a>
+    <button class="btn-secondary btn-lg inline-block text-white text-sm md:text-xl" onclick="<?= esc(
+      whatsapp_conversion_onclick(),
+      'attr',
+    ) ?>">Abrir um chamado agora</button>
   </div>
 </div>

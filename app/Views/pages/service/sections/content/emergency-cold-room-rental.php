@@ -1,235 +1,172 @@
-<section class="layout-container mb-30">
-  <div class="service-content service-content--narrow">
-    <p class="service-content__lead">
-      O <strong>sistema VRF</strong> (Fluxo de Refrigerante Variável), também conhecido como VRV, é uma das tecnologias mais modernas e eficientes em climatização de ambientes. Ele permite conectar diversas unidades internas a uma única unidade externa, oferecendo <strong>controle individual de temperatura</strong> em cada ambiente.
-    </p>
+<div class="overflow-hidden text-[#1A1A1A]">
+  <?= view('pages/service/sections/content/components/emergency-cold-room-rental-icon-sprite') ?>
+  <section class="px-6 py-20 md:py-24" aria-labelledby="situacoes-atendidas">
+    <div class="layout-container flex flex-col items-center text-center">
+      <h2 id="situacoes-atendidas" class="mb-4 text-3xl leading-tight font-bold text-[#0A4D8C] uppercase md:text-5xl">
+        Situações que atendemos
+      </h2>
+      <p class="mb-0 max-w-3xl text-[#55595F]">Câmaras frias para atendimento emergencial de clientes que tiveram:</p>
+      <?= view('pages/service/sections/content/components/emergency-cold-room-rental-icon-list', [
+        'items' => $situations,
+      ]) ?>
+      <p class="mt-8 mb-0 max-w-3xl text-lg text-[#33373C]">Uma solução rápida para você não perder mercadoria enquanto o equipamento principal está parado.</p>
+    </div>
+  </section>
 
-    <p>
-      Muito utilizado em projetos residenciais de alto padrão e empreendimentos comerciais, o VRF proporciona maior conforto térmico, economia de energia e flexibilidade arquitetônica, graças à sua tecnologia Inverter e ao gerenciamento inteligente do sistema.
-    </p>
+  <?php foreach ($lines as $line): ?>
+    <section class="px-6 py-20 <?= $line['id'] === 'resfriados'
+      ? 'bg-[#F4F5F7]'
+      : 'bg-white' ?>" aria-labelledby="linha-<?= esc($line['id'], 'attr') ?>">
+      <div class="layout-container flex flex-col items-center">
+        <h2 id="linha-<?= esc($line['id'], 'attr',) ?>" class="mb-4 text-center text-3xl leading-tight font-bold text-[#0A4D8C] uppercase md:text-5xl"><?= esc($line['title'],) ?></h2>
+        <p class="mb-0 text-center text-lg text-[#33373C]">
+          Temperatura de trabalho: <strong><?= esc($line['temperature'], ) ?></strong><span aria-hidden="true"> · </span>
+          Regulagem padrão: <strong><?= esc($line['regulation']) ?></strong>
+        </p>
+        <?php if ($line['description']): ?>
+          <p class="mt-2 mb-0 max-w-3xl text-center text-[#55595F]"><?= esc(
+            $line['description'],
+          ) ?></p>
+        <?php endif; ?>
 
-    <h2>
-      O que é um <span>sistema VRF</span>?
-    </h2>
-
-    <p>
-      O sistema VRF é uma solução de climatização avançada que combina eficiência, inteligência e flexibilidade para atender diferentes tipos de ambientes. Sua principal característica é ajustar o fluxo de refrigerante conforme a necessidade de cada espaço, entregando conforto com alto desempenho.
-    </p>
-
-    <h2>
-      Alta eficiência energética
-    </h2>
-
-    <p>
-      A tecnologia VRF ajusta automaticamente a capacidade do sistema conforme a demanda de cada ambiente, evitando desperdícios de energia. Isso resulta em menor consumo elétrico e maior eficiência operacional, especialmente em projetos de médio e grande porte.
-    </p>
-
-    <h2>
-      Sistema inteligente de monitoramento
-    </h2>
-
-    <p>
-      Os sistemas VRF possuem tecnologia avançada de automação e diagnóstico, permitindo identificar falhas rapidamente e facilitar manutenções preventivas e corretivas. Isso garante mais segurança, confiabilidade e continuidade de operação.
-    </p>
-
-    <h2>
-      Flexibilidade para grandes projetos
-    </h2>
-
-    <p>
-      Com capacidade para atender longas distâncias de tubulação, o VRF oferece ampla flexibilidade de instalação e adaptação arquitetônica. Isso permite climatizar diferentes ambientes com eficiência, mesmo em edificações complexas ou de grande porte.
-    </p>
-
-    <h2>
-      Economia de espaço
-    </h2>
-
-    <p>
-      O sistema utiliza unidades externas compactas e altamente eficientes, reduzindo o espaço necessário para instalação e preservando a estética do ambiente. É uma solução ideal para projetos que exigem integração arquitetônica e aproveitamento inteligente de áreas técnicas.
-    </p>
-
-    <h2>
-      Soluções para diversos segmentos
-    </h2>
-
-    <p>
-      Os sistemas VRF são indicados para diferentes tipos de aplicações, oferecendo conforto, controle individualizado e alta performance:
-    </p>
-
-    <div class="vrf-segments">
-      <div class="vrf-segment">
-        <span class="vrf-segment__icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 10.5 12 3l9 7.5" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 9.75V21h13.5V9.75" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 21v-6h6v6" />
-          </svg>
-        </span>
-        <span class="vrf-segment__label">Residências</span>
+        <div class="mt-9 grid w-full grid-cols-1 items-stretch gap-7 md:grid-cols-2 xl:grid-cols-3">
+          <?php foreach ($models as $model): ?>
+            <?php if ($model['line'] !== $line['id']) {
+              continue;
+            } ?>
+            <article class="flex flex-col gap-4 rounded-xl p-3 pb-7 text-center <?= $line['id'] ===
+            'resfriados'
+              ? 'bg-white'
+              : 'bg-[#F4F5F7]' ?>">
+              <div class="relative h-[220px] overflow-hidden rounded-lg bg-white">
+                <img
+                  src="<?= esc(assets('images', $model['image']['path']), 'attr') ?>"
+                  alt="Câmara fria <?= esc($model['code'], 'attr') ?> – <?= esc($model['name'],'attr',) ?>"
+                  width="<?= esc($model['image']['width'], 'attr') ?>"
+                  height="<?= esc($model['image']['height'], 'attr') ?>"
+                  loading="lazy"
+                  decoding="async"
+                  class="h-full w-full object-contain" />
+                <?php if ($model['featured']): ?>
+                  <span class="absolute top-3 left-3 rounded bg-[#F7941D] px-3 py-1 text-xs font-bold text-[#1A1A1A] uppercase">Principal modelo da frota</span>
+                <?php endif; ?>
+              </div>
+              <h3 class="mt-1 mb-0 text-2xl leading-tight font-bold text-[#0A4D8C] uppercase"><?= esc(
+                $model['code'],
+              ) ?> – <?= esc($model['name']) ?></h3>
+              <div class="flex flex-col gap-1.5 px-2 text-[15px] text-[#33373C] sm:px-3">
+                <?php foreach ($model['specs'] as $spec): ?>
+                  <div><strong class="text-[#1A1A1A]"><?= esc($spec['label']) ?>:</strong> <?= esc($spec['value'],) ?></div>
+                <?php endforeach; ?>
+                <?php if ($model['note']): ?><div class="mt-2 text-sm text-[#55595F]"><?= esc($model['note'],) ?></div><?php endif; ?>
+                <?php if ($model['indication']): ?>
+                  <div class="mt-2"><strong class="text-[#1A1A1A]"><?= esc(
+                    $model['indication_label'],
+                  ) ?>:</strong> <?= esc($model['indication']) ?></div>
+                <?php endif; ?>
+              </div>
+              <div class="mt-auto grid grid-cols-2 gap-2 px-2 pt-2 sm:px-3">
+                <?php foreach ($model['prices'] as [$priceLabel, $priceValue]): ?>
+                  <div class="rounded-md p-2.5 <?= $line['id'] === 'resfriados'
+                    ? 'bg-[#F4F5F7]'
+                    : 'bg-white' ?>">
+                    <div class="text-[13px] text-[#55595F]"><?= esc($priceLabel) ?></div>
+                    <div class="text-xl font-bold sm:text-[22px]"><?= esc($priceValue) ?></div>
+                  </div>
+                <?php endforeach; ?>
+              </div>
+            </article>
+          <?php endforeach; ?>
+        </div>
+        <a href="<?= esc(
+          $appConfig->openTicketLink,
+          'attr',
+        ) ?>" target="_blank" rel="noopener noreferrer" class="btn-secondary btn-md mt-9 inline-flex">Abrir um chamado agora</a>
       </div>
+    </section>
+  <?php endforeach; ?>
 
-      <div class="vrf-segment">
-        <span class="vrf-segment__icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 21V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v14" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 10h2m2 0h2M9 14h2m2 0h2" />
-          </svg>
-        </span>
-        <span class="vrf-segment__label">Lojas e comércios</span>
-      </div>
-
-      <div class="vrf-segment">
-        <span class="vrf-segment__icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 21V7l2-3h12l2 3v14" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 21v-6h6v6" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h8" />
-          </svg>
-        </span>
-        <span class="vrf-segment__label">Hotéis</span>
-      </div>
-
-      <div class="vrf-segment">
-        <span class="vrf-segment__icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 21V10l7-4 7 4v11" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 13h.01M12 13h.01M15 13h.01M9 17h.01M12 17h.01M15 17h.01" />
-          </svg>
-        </span>
-        <span class="vrf-segment__label">Indústrias</span>
-      </div>
-
-      <div class="vrf-segment">
-        <span class="vrf-segment__icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 21V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6" />
-          </svg>
-        </span>
-        <span class="vrf-segment__label">Hospitais</span>
-      </div>
-
-      <div class="vrf-segment">
-        <span class="vrf-segment__icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3h4.5l.75 2.25h2.25A1.5 1.5 0 0 1 18.75 6.75v10.5A1.5 1.5 0 0 1 17.25 18.75H6.75a1.5 1.5 0 0 1-1.5-1.5V6.75a1.5 1.5 0 0 1 1.5-1.5H9z" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6M12 9v6" />
-          </svg>
-        </span>
-        <span class="vrf-segment__label">Laboratórios</span>
-      </div>
-
-      <div class="vrf-segment">
-        <span class="vrf-segment__icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 5.25A2.25 2.25 0 0 1 6.25 3h11.5A2.25 2.25 0 0 1 20 5.25v13.5A2.25 2.25 0 0 1 17.75 21H6.25A2.25 2.25 0 0 1 4 18.75V5.25z" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M8 7.5h8M8 11h8M8 14.5h5" />
-          </svg>
-        </span>
-        <span class="vrf-segment__label">Escritórios</span>
+  <section class="bg-[#F4F5F7] px-6 py-20" aria-labelledby="resumo-modelos">
+    <div class="layout-container">
+      <h2 id="resumo-modelos" class="mb-9 text-center text-3xl leading-tight font-bold text-[#0A4D8C] uppercase md:text-5xl">Resumo dos modelos</h2>
+      <div class="overflow-x-auto rounded-xl bg-white">
+        <table class="w-full min-w-[760px] border-collapse text-center text-base">
+          <thead>
+            <tr class="bg-[#0A4D8C] text-sm text-white uppercase">
+              <th scope="col" class="px-3.5 py-4">Modelo</th>
+              <th scope="col" class="px-3.5 py-4">Aplicação</th>
+              <th scope="col" class="px-3.5 py-4">Medida</th>
+              <th scope="col" class="px-3.5 py-4">Volume</th>
+              <th scope="col" class="px-3.5 py-4">Capacidade aprox.</th>
+              <th scope="col" class="px-3.5 py-4">Equipamento</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($models as $model): ?>
+              <tr class="border-t border-[#E3E6EA]">
+                <th scope="row" class="px-3.5 py-3.5 font-bold"><?= esc($model['code']) ?></th>
+                <?php foreach ($model['summary'] as $summaryValue): ?>
+                  <td class="px-3.5 py-3.5"><?= esc($summaryValue) ?></td>
+                <?php endforeach; ?>
+              </tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
       </div>
     </div>
+  </section>
 
-    <h2 class="service-content__heading--spaced">
-      Acompanhamento técnico especializado
-    </h2>
+  <section class="px-6 py-20 md:py-24" aria-labelledby="itens-inclusos">
+    <div class="layout-container flex flex-col items-center text-center">
+      <h2 id="itens-inclusos" class="mb-4 text-3xl leading-tight font-bold text-[#0A4D8C] uppercase md:text-5xl">Todas as câmaras incluem</h2>
+      <p class="mb-0 text-[#55595F]">Todas as unidades são padronizadas com:</p>
+      <ul class="mt-7 grid w-full list-none grid-cols-1 gap-3 p-0 text-base font-semibold sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <?php foreach ($includedItems as $item): ?>
+          <li class="flex items-center justify-center rounded-lg bg-[#F4F5F7] p-4"><?= esc(
+            $item,
+          ) ?></li>
+        <?php endforeach; ?>
+      </ul>
+    </div>
+  </section>
 
-    <p>
-      Cada projeto recebe acompanhamento técnico completo, desde a análise inicial até o suporte pós-instalação.
-    </p>
+  <section class="bg-[#F4F5F7] px-6 py-20" aria-labelledby="monitoramento-remoto">
+    <div class="layout-container flex flex-col items-center text-center">
+      <h2 id="monitoramento-remoto" class="mb-4 text-3xl leading-tight font-bold text-[#0A4D8C] uppercase md:text-5xl">Monitoramento remoto</h2>
+      <p class="mb-0 text-[#55595F]">O sistema avisa quando:</p>
+      <?= view('pages/service/sections/content/components/emergency-cold-room-rental-icon-list', [
+        'items' => $monitoringAlerts,
+      ]) ?>
+    </div>
+  </section>
 
-    <div class="vrf-steps">
-      <div class="vrf-step"><span class="vrf-step__number">1</span>
-        <div>
-          <h3 class="vrf-step__title">Análise do projeto</h3>
-          <p class="vrf-step__description">Avaliação técnica das necessidades do ambiente para definir a solução ideal de climatização.</p>
-        </div>
+  <section class="px-6 py-20" aria-labelledby="regra-utilizacao">
+    <div class="mx-auto flex max-w-4xl flex-col items-center gap-4 text-center">
+      <h2 id="regra-utilizacao" class="mb-0 text-3xl leading-tight font-bold text-[#0A4D8C] uppercase md:text-5xl">Regra importante de utilização</h2>
+      <div class="text-xl font-bold uppercase md:text-2xl">Manutenção da temperatura dos produtos</div>
+      <p class="mb-0 text-[#33373C]">A câmara de locação é oferecida principalmente para manter a temperatura. O ideal é receber produtos que já estejam <strong>resfriados</strong> ou <strong>congelados</strong>.</p>
+      <p class="mb-0 text-[#33373C]">Uma câmara dimensionada para armazenar 1.000 kg de congelados não tem, automaticamente, capacidade para receber 1.000 kg de produto a +20 °C e congelar até -18 °C rapidamente.</p>
+      <p class="mb-0 font-semibold">Caso você necessite de congelamento ou resfriamento rápido de grande quantidade de produto, fazemos um dimensionamento específico.</p>
+    </div>
+  </section>
+
+  <section class="bg-[#F4F5F7] px-6 py-20" aria-label="Condições de frete, instalação e caução">
+    <div class="mx-auto grid max-w-5xl grid-cols-1 gap-7 lg:grid-cols-2">
+      <div class="flex flex-col gap-4 rounded-xl bg-white px-6 py-9 text-center md:px-8">
+        <h3 class="mb-0 text-2xl font-bold text-[#0A4D8C] uppercase">Frete e instalação</h3>
+        <p class="mb-0 text-[#55595F]">Cobrados separadamente:</p>
+        <ol class="m-0 flex list-none flex-col p-0 text-left font-semibold">
+          <?php foreach ($freightItems as $index => $item): ?>
+            <li class="flex justify-between gap-4 border-t border-[#E3E6EA] py-3"><span><?= $index + 1 ?>. <?= esc($item,) ?></span><span class="shrink-0 font-normal text-[#55595F]">a combinar</span></li>
+          <?php endforeach; ?>
+        </ol>
       </div>
-      <div class="vrf-step"><span class="vrf-step__number">2</span>
-        <div>
-          <h3 class="vrf-step__title">Visita técnica</h3>
-          <p class="vrf-step__description">Inspeção do local para estudo de infraestrutura, dimensionamento e viabilidade da instalação.</p>
-        </div>
-      </div>
-      <div class="vrf-step"><span class="vrf-step__number">3</span>
-        <div>
-          <h3 class="vrf-step__title">Desenvolvimento da proposta</h3>
-          <p class="vrf-step__description">Apresentação de um projeto personalizado, considerando eficiência, conforto e melhor custo-benefício.</p>
-        </div>
-      </div>
-      <div class="vrf-step"><span class="vrf-step__number">4</span>
-        <div>
-          <h3 class="vrf-step__title">Instalação do sistema</h3>
-          <p class="vrf-step__description">Execução da instalação conforme as necessidades do cliente e os padrões técnicos recomendados.</p>
-        </div>
-      </div>
-      <div class="vrf-step"><span class="vrf-step__number">5</span>
-        <div>
-          <h3 class="vrf-step__title">Treinamento técnico</h3>
-          <p class="vrf-step__description">Orientação sobre operação, funcionalidades e melhores práticas de uso do sistema.</p>
-        </div>
-      </div>
-      <div class="vrf-step"><span class="vrf-step__number">6</span>
-        <div>
-          <h3 class="vrf-step__title">Acompanhamento da obra</h3>
-          <p class="vrf-step__description">Monitoramento técnico durante todas as etapas da instalação para garantir qualidade e segurança.</p>
-        </div>
-      </div>
-      <div class="vrf-step"><span class="vrf-step__number">7</span>
-        <div>
-          <h3 class="vrf-step__title">Start-up do sistema</h3>
-          <p class="vrf-step__description">Inicialização e testes operacionais realizados por técnicos especializados para garantir o perfeito funcionamento.</p>
-        </div>
-      </div>
-      <div class="vrf-step"><span class="vrf-step__number">8</span>
-        <div>
-          <h3 class="vrf-step__title">Suporte pós-instalação</h3>
-          <p class="vrf-step__description">Atendimento técnico contínuo para manutenção, suporte e acompanhamento do desempenho do sistema.</p>
-        </div>
+      <div class="flex flex-col justify-start gap-4 rounded-xl bg-white px-6 py-9 text-center md:px-8">
+        <h3 class="mb-0 text-2xl font-bold text-[#0A4D8C] uppercase">Caução</h3>
+        <p class="mb-0 text-[#33373C]">Para clientes novos, é cobrado caução ou pré-autorização equivalente a aproximadamente:</p>
+        <div class="rounded-lg bg-[#F4F5F7] p-5 text-2xl leading-tight font-bold uppercase">1 mensalidade da locação</div>
+        <p class="mb-0 text-[#55595F]">Para clientes empresariais cadastrados e aprovados, poderá ser dispensada conforme análise.</p>
       </div>
     </div>
-
-    <h2>
-      Assistência técnica especializada
-    </h2>
-
-    <p>
-      A Vitor Soluções oferece apoio técnico e comercial completo, auxiliando desde a escolha do equipamento até o pós-venda, garantindo atendimento ágil e suporte especializado em todas as etapas do projeto.
-    </p>
-
-
-    <h2>
-      Venda e instalação de sistemas VRF
-    </h2>
-
-    <p>
-      A Vitor Soluções oferece uma solução completa em sistemas VRF, desde a venda dos equipamentos até a instalação e o acompanhamento técnico do projeto. Nossa equipe auxilia na escolha da solução mais adequada para cada ambiente, considerando capacidade, eficiência energética, características da edificação e necessidades de climatização.
-    </p>
-    <p>
-      Trabalhamos com equipamentos das principais marcas do mercado e realizamos todo o processo de implantação, incluindo dimensionamento, fornecimento dos equipamentos, instalação, start-up e suporte pós-venda.
-    </p>
-    <p>
-      Assim, residências, empresas, lojas, hotéis, clínicas e outros empreendimentos contam com um único parceiro para todas as etapas do projeto de climatização VRF.
-    </p>
-
-
-    <h2>
-      Estoque de peças e agilidade no atendimento
-    </h2>
-
-    <p>
-      A empresa conta com estoque contínuo de peças e equipamentos, reduzindo prazos de atendimento e evitando interrupções nas operações dos clientes.
-    </p>
-
-    <h2>
-      Qualidade e segurança
-    </h2>
-
-    <p>
-      Os serviços são executados por técnicos treinados e especializados, seguindo rigorosos padrões de instalação, acompanhamento e suporte técnico para garantir máxima eficiência, durabilidade e confiabilidade do sistema VRF.
-    </p>
-  </div>
-</section>
+  </section>
+</div>

@@ -1,8 +1,9 @@
 <?php
-if (render_content_if_exists($post->content ?? null, 'service', [
-    'group' => $group ?? null,
-    'post' => $post,
-  ], 'content')) {
+$contentViewData = is_array($serviceContentData ?? null) ? $serviceContentData : [];
+$contentViewData['group'] = $group ?? null;
+$contentViewData['post'] = $post;
+
+if (render_content_if_exists($post->content ?? null, 'service', $contentViewData, 'content')) {
   return;
 }
 ?>

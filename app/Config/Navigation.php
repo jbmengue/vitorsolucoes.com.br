@@ -156,6 +156,11 @@ class Navigation extends BaseConfig
         route: '#',
         children: [
           new NavItem(
+            key: 'equipment-05',
+            label: 'Locação de câmaras frias',
+            route: '/assistencia-tecnica/cameras-frias-locacao-emergencial',
+          ),
+          new NavItem(
             key: 'equipment-01',
             label: 'Câmaras frigoríficas',
             route: '/assistencia-tecnica/camaras-frigorificas',

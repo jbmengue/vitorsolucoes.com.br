@@ -2,8 +2,12 @@
 
 namespace App\Controllers;
 
+use App\Content\Service\EmergencyColdRoomRentalContent;
 use App\Entities\PostsServices;
 use App\Models\PostsServicesModel;
+use App\ValueObjects\Service\OpenTicketLinkContent;
+use App\ValueObjects\Service\SameDayServiceContent;
+use App\ValueObjects\Service\ServiceRequestContent;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Page extends BaseController
@@ -13,16 +17,40 @@ class Page extends BaseController
   public function service(string $group, string $slug): string
   {
     $service = $this->getServiceOrFail($group, $slug);
+    $serviceContentData = $this->buildServiceContentData($service);
+    $sameDayService = SameDayServiceContent::fromConfig(
+      $serviceContentData['sameDayService'] ?? null,
+    );
+    $serviceRequest = ServiceRequestContent::fromConfig(
+      $serviceContentData['serviceRequest'] ?? null,
+    );
+    $openTicketLink = OpenTicketLinkContent::fromConfig(
+      $serviceContentData['openTicketLink'] ?? null,
+    );
 
-    return $this->render(array_merge(
-      [
-        'page' => 'service',
-        'group' => $group,
-        'post' => $service,
-        'service' => $service,
-      ],
-      $this->buildMetaTagsFromService($service),
-    ));
+    return $this->render(
+      array_merge(
+        [
+          'page' => 'service',
+          'group' => $group,
+          'post' => $service,
+          'service' => $service,
+          'serviceContentData' => $serviceContentData,
+          'sameDayService' => $sameDayService,
+          'serviceRequest' => $serviceRequest,
+          'openTicketLink' => $openTicketLink,
+        ],
+        $this->buildMetaTagsFromService($service),
+      ),
+    );
+  }
+
+  private function buildServiceContentData(PostsServices $service): array
+  {
+    return match (trim((string) ($service->content ?? ''))) {
+      'view:service:emergency-cold-room-rental' => (new EmergencyColdRoomRentalContent())->data(),
+      default => [],
+    };
   }
 
   private function getServiceOrFail(string $group, string $slug): PostsServices
@@ -51,7 +79,7 @@ class Page extends BaseController
   private function buildMetaTagsFromService(PostsServices $service): array
   {
     $meta = [
-      'metaTitle' =>  (string) ($service->title ?? '') . ' | ' . $this->appConfig->name,
+      'metaTitle' => (string) ($service->title ?? '') . ' | ' . $this->appConfig->name,
       'metaDescription' => (string) ($service->subtitle ?? ''),
     ];
 
